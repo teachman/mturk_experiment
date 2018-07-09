@@ -10,17 +10,32 @@ function make_slides(f) {
 
   slides.instructions = slide({
     name : "instructions",
+
+    start: function () {
+      $(".err").hide();
+      $(".display_condition").html("You are in " + exp.condition + ".");
+      $(".display_system").html("You are using " + exp.system.Browser + " on " + exp.system.OS + " and your resolution is " + exp.system.screenW + "x" + exp.system.screenH); 
+    },
+
     button : function() {
-      exp.go(); //use exp.go() if and only if there is no "present" data.
-    }
+      if (exp.system.Browser != "Chrome"){
+        $(".err").show();
+      } else {
+        exp.go(); //use exp.go() if and only if there is no "present" data.
+      }
+    },
   });
 
   slides.single_trial = slide({
     name: "single_trial",
     start: function() {
       $(".err").hide();
-      $(".display_condition").html("You are in " + exp.condition + ".");
+      $('#topleft').prepend('<img src="../_shared/images/apron.jpg" id="topleft"/>')
+      $('#topright').prepend('<img src="../_shared/images/apple_green.jpg" id="topright"/>')
+      $('#bottomleft').prepend('<img src="../_shared/images/ashtray.jpg" id="bottomleft"/>')
+      $('#bottomright').prepend('<img src="../_shared/images/apple_red.jpg" id="bottomright"/>')
     },
+
     button : function() {
       response = $("#text_response").val();
       if (response.length == 0) {
@@ -33,6 +48,57 @@ function make_slides(f) {
         exp.go(); //make sure this is at the *end*, after you log your data
       }
     },
+  });
+
+  slides.multi_trial = slide({
+    name: "multi_trial",
+    
+    /* trial information for this block
+     (the variable 'stim' will change between each of these values,
+      and for each of these, present_handle will be run.) */
+      present : [
+        {topleft: "apple_red.jpg", topright: "../_shared/images/ashtray.jpg", bottomleft: "../_shared/images/apple_green.jpg", bottomright: "../_shared/images/apron.jpg"},
+        {topleft: "../_shared/images/apple_green.jpg", topright: "../_shared/images/apple_red.jpg", bottomleft: "../_shared/images/apron.jpg", bottomright: "../_shared/images/ashtray.jpg"},
+        {topleft: "../_shared/images/ashtray.jpg", topright: "../_shared/images/apron.jpg", bottomleft: "../_shared/images/apple_red.jpg", bottomright: "../_shared/images/apple_green.jpg"},
+      ],
+  
+      //this gets run only at the beginning of the block
+      present_handle : function(stim) {
+        $(".err").hide();
+  
+        this.stim = stim; //I like to store this information in the slide so I can record it later.
+       
+        /* $('#topleft').prepend('<img src=' + stim.topleft + ' id="topleft"/>')
+        $('#topright').prepend('<img src=' + stim.topright + ' id="topright"/>')
+        $('#bottomleft').prepend('<img src=' + stim.bottomleft + ' id="bottomleft"/>')
+        $('#bottomright').prepend('<img src=' + stim.bottomright + ' id="bottomright"/>') */
+        
+      },
+
+      change_grid : function (){
+        document.getElementById("topleft").src="../_shared/images/apple_red.jpg";
+        console.log("s")
+      },
+      
+      button : function() {
+        response = $("#text_response").val();
+        if (response.length == 0) {
+          $(".err").show();
+        } else {
+          this.log_responses();
+          
+          /* use _stream.apply(this); if and only if there is
+          "present" data. (and only *after* responses are logged) */
+          _stream.apply(this);
+        }
+      },
+  
+      log_responses : function() {
+        exp.data_trials.push({
+          "trial_type" : "multi_trial",
+          "response" : response
+        });
+      }
   });
 
   slides.one_slider = slide({
@@ -282,7 +348,7 @@ function make_slides(f) {
 function init() {
   exp.trials = [];
   exp.catch_trials = [];
-  exp.condition = _.sample(["CONDITION 1", "condition 2"]); //can randomize between subject conditions here
+  exp.condition = _.sample(["CONDITION 1", "CONDITION 2"]); //can randomize between subject conditions here
   exp.system = {
       Browser : BrowserDetect.browser,
       OS : BrowserDetect.OS,
@@ -292,7 +358,8 @@ function init() {
       screenUW: exp.width
     };
   //blocks of the experiment:
-  exp.structure=["i0", "instructions", "single_trial", "one_slider", "multi_slider", "vertical_sliders", 'subj_info', 'thanks'];
+  //exp.structure=["i0", "instructions", "single_trial", "multi_trial", "one_slider", "multi_slider", "vertical_sliders", 'subj_info', 'thanks'];
+  exp.structure=["i0", "instructions", "single_trial", "multi_trial", "one_slider", 'subj_info', 'thanks'];
 
   exp.data_trials = [];
   //make corresponding slides:

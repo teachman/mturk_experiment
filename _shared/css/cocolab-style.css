@@ -121,6 +121,52 @@ textarea {
     margin: 10px;
 }
 
+#grid{
+	width: 400px;
+    margin: 10px;
+}
+
+/* trial grid */
+.grid_wrapper{
+	width: 400px;
+	position: relative; /* This is important */
+	margin: auto;
+}
+
+#highlight{
+	width: 142px;
+	top: 10px;
+	left: 10px;
+	position: absolute;
+}
+#topleft{
+	top: 15px;
+	left: 15px;
+	width: 100px;
+	position: absolute;
+}
+
+#topright{
+	top: 15px;
+	right: 5px;
+	width: 100px;
+	position: absolute;
+}
+
+#bottomleft{
+	bottom: 15px;
+	left: 15px;
+	width: 100px;
+	position: absolute;
+}
+
+#bottomright{
+	bottom: 15px;
+	right: 5px;
+	width: 100px;
+	position: absolute;
+}
+
 .slider {
 	width: 400;
 	margin: 10px;
