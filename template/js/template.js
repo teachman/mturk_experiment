@@ -50,6 +50,54 @@ function make_slides(f) {
     },
   });
 
+  slides.test1 = slide({
+    name: "test1",
+    start: function() {
+      $(".err").hide();
+      $('#topleft2').prepend('<img src="../_shared/images/ashtray.jpg" id="topleft2"/>')
+      $('#topright2').prepend('<img src="../_shared/images/apple_red.jpg" id="topright2"/>')
+      $('#bottomleft2').prepend('<img src="../_shared/images/apple_green.jpg" id="bottomleft2"/>')
+      $('#bottomright2').prepend('<img src="../_shared/images/apron.jpg" id="bottomright2"/>')
+    },
+
+    button : function() {
+      response2 = $("#text_response2").val();
+      if (response2.length == 0) {
+        $(".err").show();
+      } else {
+        exp.data_trials.push({
+          "trial_type" : "test1",
+          "response" : response2
+        });
+        exp.go(); //make sure this is at the *end*, after you log your data
+      }
+    },
+  });
+
+  slides.test2 = slide({
+    name: "test2",
+    start: function() {
+      $(".err").hide();
+      $('#topleft3').prepend('<img src="../_shared/images/apron.jpg" id="topleft3"/>')
+      $('#topright3').prepend('<img src="../_shared/images/ashtray.jpg" id="topright3"/>')
+      $('#bottomleft3').prepend('<img src="../_shared/images/apple_red.jpg" id="bottomleft3"/>')
+      $('#bottomright3').prepend('<img src="../_shared/images/apple_green.jpg" id="bottomright3"/>')
+    },
+
+    button : function() {
+      response3 = $("#text_response3").val();
+      if (response3.length == 0) {
+        $(".err").show();
+      } else {
+        exp.data_trials.push({
+          "trial_type" : "test2",
+          "response" : response3
+        });
+        exp.go(); //make sure this is at the *end*, after you log your data
+      }
+    },
+  });
+
   slides.multi_trial = slide({
     name: "multi_trial",
     
@@ -67,7 +115,9 @@ function make_slides(f) {
         $(".err").hide();
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
-       
+
+        $(".grid_wrapper").append('<img src="../_shared/images/grid.jpg" alt="grid" id="grid"></img>');
+      
         /* $('#topleft').prepend('<img src=' + stim.topleft + ' id="topleft"/>')
         $('#topright').prepend('<img src=' + stim.topright + ' id="topright"/>')
         $('#bottomleft').prepend('<img src=' + stim.bottomleft + ' id="bottomleft"/>')
@@ -359,7 +409,7 @@ function init() {
     };
   //blocks of the experiment:
   //exp.structure=["i0", "instructions", "single_trial", "multi_trial", "one_slider", "multi_slider", "vertical_sliders", 'subj_info', 'thanks'];
-  exp.structure=["i0", "instructions", "single_trial", "multi_trial", "one_slider", 'subj_info', 'thanks'];
+  exp.structure=["i0", "instructions", "single_trial", "test1", "test2",'subj_info', 'thanks'];
 
   exp.data_trials = [];
   //make corresponding slides:
