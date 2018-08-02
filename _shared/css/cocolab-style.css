@@ -135,8 +135,8 @@ textarea {
 
 #highlight{
 	width: 142px;
-	top: 10px;
-	left: 10px;
+	top: 5px;
+	left: 5px;
 	position: absolute;
 }
 
@@ -155,8 +155,8 @@ textarea {
 
 #highlight2{
 	width: 142px;
-	top: 10px;
-	right: -10px;
+	top: 5px;
+	right: -5px;
 	position: absolute;
 }
 
@@ -182,51 +182,6 @@ textarea {
 }
 
 #bottomright2{
-	bottom: 15px;
-	right: 5px;
-	width: 100px;
-	position: absolute;
-}
-
-.grid3{
-	width: 400px;
-	position: relative; /* This is important */
-	margin: auto;
-}
-
-#grid3{
-	width: 400px;
-    margin: 10px;
-}
-#highlight3{
-	width: 142px;
-	bottom: 10px;
-	left: 10px;
-	position: absolute;
-}
-
-#topleft3{
-	top: 15px;
-	left: 15px;
-	width: 100px;
-	position: absolute;
-}
-
-#topright3{
-	top: 15px;
-	right: 5px;
-	width: 100px;
-	position: absolute;
-}
-
-#bottomleft3{
-	bottom: 15px;
-	left: 15px;
-	width: 100px;
-	position: absolute;
-}
-
-#bottomright3{
 	bottom: 15px;
 	right: 5px;
 	width: 100px;

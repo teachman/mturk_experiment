@@ -30,20 +30,27 @@ function make_slides(f) {
     name: "single_trial",
     start: function() {
       $(".err").hide();
+      document.getElementById("text_response").disabled = true;
+      startTimer()
+      exp.time1 = Date.now()
       $('#topleft').prepend('<img src="../_shared/images/apron.jpg" id="topleft"/>')
       $('#topright').prepend('<img src="../_shared/images/apple_green.jpg" id="topright"/>')
       $('#bottomleft').prepend('<img src="../_shared/images/ashtray.jpg" id="bottomleft"/>')
       $('#bottomright').prepend('<img src="../_shared/images/apple_red.jpg" id="bottomright"/>')
     },
 
+
     button : function() {
       response = $("#text_response").val();
       if (response.length == 0) {
         $(".err").show();
       } else {
+        var clicktime = Date.now();
+        time = clicktime - exp.time1;
         exp.data_trials.push({
           "trial_type" : "single_trial",
-          "response" : response
+          "response" : response,
+          "time" : time
         });
         exp.go(); //make sure this is at the *end*, after you log your data
       }
@@ -54,6 +61,8 @@ function make_slides(f) {
     name: "test1",
     start: function() {
       $(".err").hide();
+      startTimer2()
+      exp.time2 = Date.now()
       $('#topleft2').prepend('<img src="../_shared/images/ashtray.jpg" id="topleft2"/>')
       $('#topright2').prepend('<img src="../_shared/images/apple_red.jpg" id="topright2"/>')
       $('#bottomleft2').prepend('<img src="../_shared/images/apple_green.jpg" id="bottomleft2"/>')
@@ -61,42 +70,23 @@ function make_slides(f) {
     },
 
     button : function() {
+      
       response2 = $("#text_response2").val();
-      if (response2.length == 0) {
+      if (response2.length == 0 || response2 == 'Click on the') {
         $(".err").show();
       } else {
+        var clicktime = Date.now();
+        time2 = clicktime - exp.time2;
         exp.data_trials.push({
           "trial_type" : "test1",
-          "response" : response2
+          "response" : response2, 
+          "time" : time2
         });
         exp.go(); //make sure this is at the *end*, after you log your data
       }
     },
   });
 
-  slides.test2 = slide({
-    name: "test2",
-    start: function() {
-      $(".err").hide();
-      $('#topleft3').prepend('<img src="../_shared/images/apron.jpg" id="topleft3"/>')
-      $('#topright3').prepend('<img src="../_shared/images/ashtray.jpg" id="topright3"/>')
-      $('#bottomleft3').prepend('<img src="../_shared/images/apple_red.jpg" id="bottomleft3"/>')
-      $('#bottomright3').prepend('<img src="../_shared/images/apple_green.jpg" id="bottomright3"/>')
-    },
-
-    button : function() {
-      response3 = $("#text_response3").val();
-      if (response3.length == 0) {
-        $(".err").show();
-      } else {
-        exp.data_trials.push({
-          "trial_type" : "test2",
-          "response" : response3
-        });
-        exp.go(); //make sure this is at the *end*, after you log your data
-      }
-    },
-  });
 
   slides.multi_trial = slide({
     name: "multi_trial",
@@ -394,6 +384,22 @@ function make_slides(f) {
   return slides;
 }
 
+function startTimer() {
+  setTimeout(ring, 1500) 
+}
+
+function ring() {
+  $('#highlight').prepend('<img src="../_shared/images/highlight.png" id="highlight"/>')
+  document.getElementById("text_response").disabled = false;
+}
+function startTimer2() {
+  setTimeout(ring2, 1500) 
+}
+
+function ring2() {
+  $('#highlight2').prepend('<img src="../_shared/images/highlight.png" id="highlight2"/>')
+}
+
 /// init ///
 function init() {
   exp.trials = [];
@@ -409,7 +415,7 @@ function init() {
     };
   //blocks of the experiment:
   //exp.structure=["i0", "instructions", "single_trial", "multi_trial", "one_slider", "multi_slider", "vertical_sliders", 'subj_info', 'thanks'];
-  exp.structure=["i0", "instructions", "single_trial", "test1", "test2",'subj_info', 'thanks'];
+  exp.structure=["i0", "instructions", "single_trial", "test1", 'subj_info', 'thanks'];
 
   exp.data_trials = [];
   //make corresponding slides:
