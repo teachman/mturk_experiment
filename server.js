@@ -45,13 +45,11 @@ app.use(function(req, res, next) {
 }); */
 
 app.get('/home', function(req,res){
-	console.log("yo")
     res.sendFile(__dirname + '/template/template.html')
 });
 
 app.get("/condition", function(req,res){
-    console.log("hi")
-    connection.query('SELECT list, target FROM lists WHERE list = ?', [req.query.list], function (error, result, fields) {    if (error) {
+    connection.query('SELECT target, target_loc, contrast, contrast_loc, filler1, filler1_loc, filler2, filler2_loc FROM lists WHERE list = ?', [req.query.list], function (error, result, fields) {    if (error) {
          throw error;
        }
        res.json(JSON.stringify(result));

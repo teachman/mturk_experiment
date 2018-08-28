@@ -15,6 +15,8 @@ function make_slides(f) {
       $(".err").hide();
       $(".display_condition").html("You are in " + exp.condition + ".");
       $(".display_system").html("You are using " + exp.system.Browser + " on " + exp.system.OS + " and your resolution is " + exp.system.screenW + "x" + exp.system.screenH); 
+      var test = getStimuli()
+      console.log(test)
     },
 
     button : function() {
@@ -65,11 +67,11 @@ function make_slides(f) {
       and for each of these, present_handle will be run.) */
       
       
-      present : getStimuli()
-      /* [{tl: "_shared/images/apple_red.jpg", tr: "_shared/images/ashtray.jpg", bl: "_shared/images/apple_green.jpg", br: "_shared/images/apron.jpg"},
+      present : 
+       [{tl: "_shared/images/apple_red.jpg", tr: "_shared/images/ashtray.jpg", bl: "_shared/images/apple_green.jpg", br: "_shared/images/apron.jpg"},
         {topleft: "_shared/images/apple_green.jpg", topright: "_shared/images/apple_red.jpg", bottomleft: "_shared/images/apron.jpg", bottomright: "_shared/images/ashtray.jpg"},
         {topleft: "_shared/images/ashtray.jpg", topright: "_shared/images/apron.jpg", bottomleft: "_shared/images/apple_red.jpg", bottomright: "_shared/images/apple_green.jpg"},
-      ] */,
+      ] ,
   
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
@@ -152,9 +154,12 @@ function make_slides(f) {
 
 // grabs list from database
 function getStimuli() {
-  $.getJSON("/condition", { 'list': exp.condition}, function (data) {
+  return new Promise((resolve,reject)=>{ 
+    $.getJSON("/condition", { 'list': exp.condition}, function (data) {
       var stimuli = JSON.parse(data)
       console.log(stimuli);
+      resolve(stimuli) 
+    })
   });
 };
 
