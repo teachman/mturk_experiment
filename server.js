@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/home', function(req,res){
-    res.redirect('/template.html')
+    res.sendFile(__dirname + '/template/template.html')
 })
 
 app.listen(8000);
