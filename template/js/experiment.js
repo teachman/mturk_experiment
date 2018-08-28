@@ -13,7 +13,6 @@ function make_slides(f) {
 
     start: function () {
       $(".err").hide();
-      getStimuli()
       $(".display_condition").html("You are in " + exp.condition + ".");
       $(".display_system").html("You are using " + exp.system.Browser + " on " + exp.system.OS + " and your resolution is " + exp.system.screenW + "x" + exp.system.screenH); 
     },
@@ -64,11 +63,13 @@ function make_slides(f) {
       /* trial information for this block
       (the variable 'stim' will change between each of these values,
       and for each of these, present_handle will be run.) */
-      present : [
-        {topleft: "_shared/images/apple_red.jpg", topright: "_shared/images/ashtray.jpg", bottomleft: "_shared/images/apple_green.jpg", bottomright: "_shared/images/apron.jpg"},
+      
+      
+      present : getStimuli()
+      /* [{tl: "_shared/images/apple_red.jpg", tr: "_shared/images/ashtray.jpg", bl: "_shared/images/apple_green.jpg", br: "_shared/images/apron.jpg"},
         {topleft: "_shared/images/apple_green.jpg", topright: "_shared/images/apple_red.jpg", bottomleft: "_shared/images/apron.jpg", bottomright: "_shared/images/ashtray.jpg"},
         {topleft: "_shared/images/ashtray.jpg", topright: "_shared/images/apron.jpg", bottomleft: "_shared/images/apple_red.jpg", bottomright: "_shared/images/apple_green.jpg"},
-      ],
+      ] */,
   
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
@@ -79,13 +80,13 @@ function make_slides(f) {
 
         // routine to replace images in the grid for each trial 
         $('#topleft').empty();
-        $('#topleft').prepend('<img src=' + stim.topleft + ' id="topleft"/>')
+        $('#topleft').prepend('<img src="_shared/stimuli/"' + stim.tl + ' id="topleft"/>')
         $('#topright').empty();
-        $('#topright').prepend('<img src=' + stim.topright + ' id="topright"/>')
+        $('#topright').prepend('<img src="_shared/stimuli/"' + stim.tr + ' id="topright"/>')
         $('#bottomleft').empty();
-        $('#bottomleft').prepend('<img src=' + stim.bottomleft + ' id="bottomleft"/>')
+        $('#bottomleft').prepend('<img src="_shared/stimuli/"' + stim.bl + ' id="bottomleft"/>')
         $('#bottomright').empty();
-        $('#bottomright').prepend('<img src=' + stim.bottomright + ' id="bottomright"/>') 
+        $('#bottomright').prepend('<img src="_shared/stimuli/"' + stim.br + ' id="bottomright"/>') 
         
       },
       
