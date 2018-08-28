@@ -40,7 +40,6 @@ function make_slides(f) {
       $('#ex_bottomright').prepend('<img src="../_shared/images/apple_red.jpg" id="ex_bottomright"/>')
     },
 
-
     button : function() {
       response = $("#ex_text_response").val();
       if (response == 'Click on the') {
@@ -61,8 +60,8 @@ function make_slides(f) {
   slides.multi_trial = slide({
     name: "multi_trial",
     
-    /* trial information for this block
-     (the variable 'stim' will change between each of these values,
+      /* trial information for this block
+      (the variable 'stim' will change between each of these values,
       and for each of these, present_handle will be run.) */
       present : [
         {topleft: "../_shared/images/apple_red.jpg", topright: "../_shared/images/ashtray.jpg", bottomleft: "../_shared/images/apple_green.jpg", bottomright: "../_shared/images/apron.jpg"},
@@ -75,7 +74,9 @@ function make_slides(f) {
         $(".err").hide();
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
+        
 
+        // routine to replace images in the grid for each trial 
         $('#topleft').empty();
         $('#topleft').prepend('<img src=' + stim.topleft + ' id="topleft"/>')
         $('#topright').empty();
@@ -371,7 +372,7 @@ function ring() {
 function init() {
   exp.trials = [];
   exp.catch_trials = [];
-  exp.condition = _.sample(["CONDITION 1", "CONDITION 2"]); //can randomize between subject conditions here
+  exp.condition = _.sample(["A1", "B1", "C1", "A1R", "B1R", "C1R"]); //can randomize between subject conditions here
   exp.system = {
       Browser : BrowserDetect.browser,
       OS : BrowserDetect.OS,
