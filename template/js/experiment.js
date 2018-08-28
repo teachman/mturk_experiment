@@ -35,10 +35,10 @@ function make_slides(f) {
       // start timer function controls the timing of the trial routine
       ex_startTimer()
       exp.time1 = Date.now()
-      $('#ex_topleft').prepend('<img src="../_shared/images/apron.jpg" id="ex_topleft"/>')
-      $('#ex_topright').prepend('<img src="../_shared/images/apple_green.jpg" id="ex_topright"/>')
-      $('#ex_bottomleft').prepend('<img src="../_shared/images/ashtray.jpg" id="ex_bottomleft"/>')
-      $('#ex_bottomright').prepend('<img src="../_shared/images/apple_red.jpg" id="ex_bottomright"/>')
+      $('#ex_topleft').prepend('<img src="_shared/images/apron.jpg" id="ex_topleft"/>')
+      $('#ex_topright').prepend('<img src="_shared/images/apple_green.jpg" id="ex_topright"/>')
+      $('#ex_bottomleft').prepend('<img src="_shared/images/ashtray.jpg" id="ex_bottomleft"/>')
+      $('#ex_bottomright').prepend('<img src="_shared/images/apple_red.jpg" id="ex_bottomright"/>')
     },
 
     button : function() {
@@ -65,9 +65,9 @@ function make_slides(f) {
       (the variable 'stim' will change between each of these values,
       and for each of these, present_handle will be run.) */
       present : [
-        {topleft: "../_shared/images/apple_red.jpg", topright: "../_shared/images/ashtray.jpg", bottomleft: "../_shared/images/apple_green.jpg", bottomright: "../_shared/images/apron.jpg"},
-        {topleft: "../_shared/images/apple_green.jpg", topright: "../_shared/images/apple_red.jpg", bottomleft: "../_shared/images/apron.jpg", bottomright: "../_shared/images/ashtray.jpg"},
-        {topleft: "../_shared/images/ashtray.jpg", topright: "../_shared/images/apron.jpg", bottomleft: "../_shared/images/apple_red.jpg", bottomright: "../_shared/images/apple_green.jpg"},
+        {topleft: "_shared/images/apple_red.jpg", topright: "_shared/images/ashtray.jpg", bottomleft: "_shared/images/apple_green.jpg", bottomright: "_shared/images/apron.jpg"},
+        {topleft: "_shared/images/apple_green.jpg", topright: "_shared/images/apple_red.jpg", bottomleft: "_shared/images/apron.jpg", bottomright: "_shared/images/ashtray.jpg"},
+        {topleft: "_shared/images/ashtray.jpg", topright: "_shared/images/apron.jpg", bottomleft: "_shared/images/apple_red.jpg", bottomright: "_shared/images/apple_green.jpg"},
       ],
   
       //this gets run only at the beginning of the block
@@ -163,7 +163,7 @@ function ex_startTimer() {
 }
 
 function ex_ring() {
-  $('#ex_highlight').prepend('<img src="../_shared/images/highlight.png" id="ex_highlight"/>')
+  $('#ex_highlight').prepend('<img src="_shared/images/highlight.png" id="ex_highlight"/>')
   document.getElementById("ex_text_response").disabled = false;
 }
 function startTimer() {
@@ -171,7 +171,7 @@ function startTimer() {
 }
 
 function ring() {
-  $('#highlight').prepend('<img src="../_shared/images/highlight.png" id="highlight"/>')
+  $('#highlight').prepend('<img src="_shared/images/highlight.png" id="highlight"/>')
 }
 
 
