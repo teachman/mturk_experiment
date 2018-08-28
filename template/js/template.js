@@ -13,6 +13,7 @@ function make_slides(f) {
 
     start: function () {
       $(".err").hide();
+      getStimuli()
       $(".display_condition").html("You are in " + exp.condition + ".");
       $(".display_system").html("You are using " + exp.system.Browser + " on " + exp.system.OS + " and your resolution is " + exp.system.screenW + "x" + exp.system.screenH); 
     },
@@ -352,12 +353,23 @@ function make_slides(f) {
   return slides;
 }
 
+/* FUNCTIONS */
+
+// grabs list from database
+function getStimuli() {
+  $.getJSON("/condition", { 'list': exp.condition}, function (list) {
+      var stimuli = JSON.parse(list)
+      console.log(stimuli);
+  });
+};
+
+// these functions control trial timing
 function ex_startTimer() {
   setTimeout(ex_ring, 1500) 
 }
 
 function ex_ring() {
-  $('#ex_highlight').prepend('<img src="../_shared/images/highlight.png" id="highlight"/>')
+  $('#ex_highlight').prepend('<img src="../_shared/images/highlight.png" id="ex_highlight"/>')
   document.getElementById("ex_text_response").disabled = false;
 }
 function startTimer() {
@@ -367,6 +379,9 @@ function startTimer() {
 function ring() {
   $('#highlight').prepend('<img src="../_shared/images/highlight.png" id="highlight"/>')
 }
+
+
+
 
 /// init ///
 function init() {

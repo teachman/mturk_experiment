@@ -45,6 +45,14 @@ app.use(function(req, res, next) {
 
 app.get('/home', function(req,res){
     res.redirect('http://teachman.info/mturk_experiment/template/template.html')
-})
+});
+
+app.get("/condition", function(req,res){
+    connection.query('SELECT list, target FROM lists WHERE list = ?', [req.query.list], function (error, result, fields) {    if (error) {
+         throw error;
+       }
+       res.json(JSON.stringify(result));
+     })
+   })
 
 app.listen(8000);
