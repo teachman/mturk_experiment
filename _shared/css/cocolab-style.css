@@ -122,13 +122,25 @@ textarea {
 }
 
 /* trial grid */
+
 .grid_wrapper{
 	width: 400px;
 	position: relative; /* This is important */
 	margin: auto;
 }
 
+.ex_grid_wrapper{
+	/* Using ex to distinguish example trial */
+	width: 400px;
+	position: relative; /* This is important */
+	margin: auto;
+}
+
 #grid{
+	width: 400px;
+    margin: 10px;
+}
+#ex_grid{
 	width: 400px;
     margin: 10px;
 }
@@ -140,57 +152,21 @@ textarea {
 	position: absolute;
 }
 
-/* ---------------------------------*/
-
-.grid2{
-	width: 400px;
-	position: relative; /* This is important */
-	margin: auto;
-}
-
-#grid2{
-	width: 400px;
-    margin: 10px;
-}
-
-#highlight2{
+#ex_highlight{
 	width: 142px;
 	top: 5px;
-	right: -5px;
+	left: 5px;
 	position: absolute;
 }
-
-#topleft2{
-	top: 15px;
-	left: 15px;
-	width: 100px;
-	position: absolute;
-}
-
-#topright2{
-	top: 15px;
-	right: 5px;
-	width: 100px;
-	position: absolute;
-}
-
-#bottomleft2{
-	bottom: 15px;
-	left: 15px;
-	width: 100px;
-	position: absolute;
-}
-
-#bottomright2{
-	bottom: 15px;
-	right: 5px;
-	width: 100px;
-	position: absolute;
-}
-
-/* ---------------------------------------------- */
 
 #topleft{
+	top: 15px;
+	left: 15px;
+	width: 100px;
+	position: absolute;
+}
+
+#ex_topleft{
 	top: 15px;
 	left: 15px;
 	width: 100px;
@@ -204,7 +180,21 @@ textarea {
 	position: absolute;
 }
 
+#ex_topright{
+	top: 15px;
+	right: 5px;
+	width: 100px;
+	position: absolute;
+}
+
 #bottomleft{
+	bottom: 15px;
+	left: 15px;
+	width: 100px;
+	position: absolute;
+}
+
+#ex_bottomleft{
 	bottom: 15px;
 	left: 15px;
 	width: 100px;
@@ -217,6 +207,15 @@ textarea {
 	width: 100px;
 	position: absolute;
 }
+
+#ex_bottomright{
+	bottom: 15px;
+	right: 5px;
+	width: 100px;
+	position: absolute;
+}
+
+/* sliders */
 
 .slider {
 	width: 400;

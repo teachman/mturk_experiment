@@ -30,19 +30,20 @@ function make_slides(f) {
     name: "single_trial",
     start: function() {
       $(".err").hide();
-      document.getElementById("text_response").disabled = true;
-      startTimer()
+      document.getElementById("ex_text_response").disabled = true;
+      // start timer function controls the timing of the trial routine
+      ex_startTimer()
       exp.time1 = Date.now()
-      $('#topleft').prepend('<img src="../_shared/images/apron.jpg" id="topleft"/>')
-      $('#topright').prepend('<img src="../_shared/images/apple_green.jpg" id="topright"/>')
-      $('#bottomleft').prepend('<img src="../_shared/images/ashtray.jpg" id="bottomleft"/>')
-      $('#bottomright').prepend('<img src="../_shared/images/apple_red.jpg" id="bottomright"/>')
+      $('#ex_topleft').prepend('<img src="../_shared/images/apron.jpg" id="ex_topleft"/>')
+      $('#ex_topright').prepend('<img src="../_shared/images/apple_green.jpg" id="ex_topright"/>')
+      $('#ex_bottomleft').prepend('<img src="../_shared/images/ashtray.jpg" id="ex_bottomleft"/>')
+      $('#ex_bottomright').prepend('<img src="../_shared/images/apple_red.jpg" id="ex_bottomright"/>')
     },
 
 
     button : function() {
-      response = $("#text_response").val();
-      if (response.length == 0) {
+      response = $("#ex_text_response").val();
+      if (response == 'Click on the') {
         $(".err").show();
       } else {
         var clicktime = Date.now();
@@ -57,37 +58,6 @@ function make_slides(f) {
     },
   });
 
-  slides.test1 = slide({
-    name: "test1",
-    start: function() {
-      $(".err").hide();
-      startTimer2()
-      exp.time2 = Date.now()
-      $('#topleft2').prepend('<img src="../_shared/images/ashtray.jpg" id="topleft2"/>')
-      $('#topright2').prepend('<img src="../_shared/images/apple_red.jpg" id="topright2"/>')
-      $('#bottomleft2').prepend('<img src="../_shared/images/apple_green.jpg" id="bottomleft2"/>')
-      $('#bottomright2').prepend('<img src="../_shared/images/apron.jpg" id="bottomright2"/>')
-    },
-
-    button : function() {
-      
-      response2 = $("#text_response2").val();
-      if (response2.length == 0 || response2 == 'Click on the') {
-        $(".err").show();
-      } else {
-        var clicktime = Date.now();
-        time2 = clicktime - exp.time2;
-        exp.data_trials.push({
-          "trial_type" : "test1",
-          "response" : response2, 
-          "time" : time2
-        });
-        exp.go(); //make sure this is at the *end*, after you log your data
-      }
-    },
-  });
-
-
   slides.multi_trial = slide({
     name: "multi_trial",
     
@@ -95,7 +65,7 @@ function make_slides(f) {
      (the variable 'stim' will change between each of these values,
       and for each of these, present_handle will be run.) */
       present : [
-        {topleft: "apple_red.jpg", topright: "../_shared/images/ashtray.jpg", bottomleft: "../_shared/images/apple_green.jpg", bottomright: "../_shared/images/apron.jpg"},
+        {topleft: "../_shared/images/apple_red.jpg", topright: "../_shared/images/ashtray.jpg", bottomleft: "../_shared/images/apple_green.jpg", bottomright: "../_shared/images/apron.jpg"},
         {topleft: "../_shared/images/apple_green.jpg", topright: "../_shared/images/apple_red.jpg", bottomleft: "../_shared/images/apron.jpg", bottomright: "../_shared/images/ashtray.jpg"},
         {topleft: "../_shared/images/ashtray.jpg", topright: "../_shared/images/apron.jpg", bottomleft: "../_shared/images/apple_red.jpg", bottomright: "../_shared/images/apple_green.jpg"},
       ],
@@ -106,18 +76,15 @@ function make_slides(f) {
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
 
-        $(".grid_wrapper").append('<img src="../_shared/images/grid.jpg" alt="grid" id="grid"></img>');
-      
-        /* $('#topleft').prepend('<img src=' + stim.topleft + ' id="topleft"/>')
+        $('#topleft').empty();
+        $('#topleft').prepend('<img src=' + stim.topleft + ' id="topleft"/>')
+        $('#topright').empty();
         $('#topright').prepend('<img src=' + stim.topright + ' id="topright"/>')
+        $('#bottomleft').empty();
         $('#bottomleft').prepend('<img src=' + stim.bottomleft + ' id="bottomleft"/>')
-        $('#bottomright').prepend('<img src=' + stim.bottomright + ' id="bottomright"/>') */
+        $('#bottomright').empty();
+        $('#bottomright').prepend('<img src=' + stim.bottomright + ' id="bottomright"/>') 
         
-      },
-
-      change_grid : function (){
-        document.getElementById("topleft").src="../_shared/images/apple_red.jpg";
-        console.log("s")
       },
       
       button : function() {
@@ -384,20 +351,20 @@ function make_slides(f) {
   return slides;
 }
 
+function ex_startTimer() {
+  setTimeout(ex_ring, 1500) 
+}
+
+function ex_ring() {
+  $('#ex_highlight').prepend('<img src="../_shared/images/highlight.png" id="highlight"/>')
+  document.getElementById("ex_text_response").disabled = false;
+}
 function startTimer() {
-  setTimeout(ring, 1500) 
+  setTimeout(ring2, 1500) 
 }
 
 function ring() {
   $('#highlight').prepend('<img src="../_shared/images/highlight.png" id="highlight"/>')
-  document.getElementById("text_response").disabled = false;
-}
-function startTimer2() {
-  setTimeout(ring2, 1500) 
-}
-
-function ring2() {
-  $('#highlight2').prepend('<img src="../_shared/images/highlight.png" id="highlight2"/>')
 }
 
 /// init ///
@@ -415,7 +382,7 @@ function init() {
     };
   //blocks of the experiment:
   //exp.structure=["i0", "instructions", "single_trial", "multi_trial", "one_slider", "multi_slider", "vertical_sliders", 'subj_info', 'thanks'];
-  exp.structure=["i0", "instructions", "single_trial", "test1", 'subj_info', 'thanks'];
+  exp.structure=["i0", "instructions", "single_trial", 'multi_trial', 'subj_info', 'thanks'];
 
   exp.data_trials = [];
   //make corresponding slides:
