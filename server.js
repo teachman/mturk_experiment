@@ -29,7 +29,7 @@ if(!err) {
 
 var app = express();
 app.use(methodOverride("_method"))
-app.use(express.static(__dirname + '/mturk_experiment/template')); 
+app.use(express.static(__dirname+'/template')); 
 app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded({limit:'50mb', extended: true}));
 
@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
 
 app.get('/home', function(req,res){
 	console.log("yo")
-    res.redirect('http://teachman.info/mturk_experiment/template/template.html')
+    res.sendFile(__dirname + '/template/template.html')
 });
 
 app.get("/condition", function(req,res){
