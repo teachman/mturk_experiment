@@ -28,7 +28,7 @@ if(!err) {
 
 var app = express();
 app.use(methodOverride("_method"))
-app.use(express.static(__dirname+'/template'));
+app.use(express.static(__dirname+'/mturk_experiment/template/template.html'));
 app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded({limit:'50mb', extended: true}));
 
