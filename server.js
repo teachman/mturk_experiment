@@ -17,6 +17,7 @@ var connection = mysql.createConnection({
   insecureAuth:true,
   multipleStatements: true
 });
+
 connection.connect(function(err){
 if(!err) {
     console.log("Database is connected ... nn");
@@ -33,7 +34,7 @@ app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded({limit:'50mb', extended: true}));
 
 app.use(cookieParser("my very well kept secret"))
-
+/* 
 
 app.use(function(req, res, next) {
     //0 is control group, 1 is experimental group
@@ -41,7 +42,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     next();
-});
+}); */
 
 app.get('/home', function(req,res){
 	console.log("yo")
