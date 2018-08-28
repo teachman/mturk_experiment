@@ -387,7 +387,7 @@ function ring() {
 function init() {
   exp.trials = [];
   exp.catch_trials = [];
-  exp.condition = _.sample(["A1", "B1", "C1", "A1R", "B1R", "C1R"]); //can randomize between subject conditions here
+  exp.condition = _.sample(["A1", "B1", "C1", "A1r", "B1r", "C1r"]); //can randomize between subject conditions here
   exp.system = {
       Browser : BrowserDetect.browser,
       OS : BrowserDetect.OS,
