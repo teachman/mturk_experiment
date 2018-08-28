@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/home', function(req,res){
-    res.sendFile(__dirname + '/template/template.html')
+    res.redirect('http://teachman.info/mturk_experiment/template/template.html')
 })
 
 app.listen(8000);
