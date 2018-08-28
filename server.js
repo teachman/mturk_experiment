@@ -48,6 +48,7 @@ app.get('/home', function(req,res){
 });
 
 app.get("/condition", function(req,res){
+    console.log("hi")
     connection.query('SELECT list, target FROM lists WHERE list = ?', [req.query.list], function (error, result, fields) {    if (error) {
          throw error;
        }

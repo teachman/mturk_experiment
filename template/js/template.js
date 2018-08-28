@@ -357,8 +357,8 @@ function make_slides(f) {
 
 // grabs list from database
 function getStimuli() {
-  $.getJSON("/condition", { 'list': exp.condition}, function (list) {
-      var stimuli = JSON.parse(list)
+  $.getJSON("/condition", { 'list': exp.condition}, function (data) {
+      var stimuli = JSON.parse(data)
       console.log(stimuli);
   });
 };
