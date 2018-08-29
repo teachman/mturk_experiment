@@ -171,7 +171,7 @@ function cleanStimuli(stimuli) {
         var cleanRow = {br: "", bl: "", tr: "", tl: "", type: ""}
         cleanRow.stimuli[i].target_loc = stimuli[i].target
         cleanRow.type = stimuli[i].trial_type
-        cleanStim[i] = cleanRow
+        cleanStim.push(cleanRow)
     }
     console.log(cleanStim)
     resolve(cleanStim) 
