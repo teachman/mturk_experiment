@@ -101,7 +101,7 @@ function make_slides(f) {
       
       button : function() {
         response = $("#text_response").val();
-        if (response == 'Click on the') {
+        if (response == 'Click on the ') {
           $(".err").show();
         } else {
           this.log_responses();
