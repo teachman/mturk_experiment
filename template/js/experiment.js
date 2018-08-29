@@ -1,13 +1,13 @@
-var stimuli = []
-var cleanStim = []
-
 function make_slides(f) {
   var   slides = {};
-
+  
   slides.i0 = slide({
      name : "i0",
      start: function() {
       exp.startT = Date.now();
+      // Grab the stimuli for the experiment 
+      exp.stimuli = []
+      exp.cleanStim = []
       getStimuli();
      }
   });
@@ -68,8 +68,8 @@ function make_slides(f) {
       (the variable 'stim' will change between each of these values,
       and for each of these, present_handle will be run.) */
       
-      
-      present : cleanStim,
+      // cleanStim is the full arra
+      present : exp.cleanStim,
   
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
@@ -157,24 +157,24 @@ function make_slides(f) {
 // grabs list from database
 function getStimuli() {
     $.getJSON("/condition", { 'list': exp.condition}, function (data) {
-      stimuli = JSON.parse(data)
+      exp.stimuli = JSON.parse(data)
       cleanStimuli();
     })
 };
 
 function cleanStimuli() {
     var i;
-    for (i = 0; i < stimuli.length; i++) { 
+    for (i = 0; i < exp.stimuli.length; i++) { 
         var cleanRow = {type: "", highlight: ""}
-        cleanRow.highlight = stimuli[i].target_loc
-        cleanRow[stimuli[i].target_loc] = stimuli[i].target
-        cleanRow[stimuli[i].contrast_loc] = stimuli[i].contrast
-        cleanRow[stimuli[i].filler1_loc] = stimuli[i].filler1
-        cleanRow[stimuli[i].filler2_loc] = stimuli[i].filler2
-        cleanRow.type = stimuli[i].trial_type
-        cleanStim.push(cleanRow)
+        cleanRow.highlight = exp.stimuli[i].target_loc
+        cleanRow[exp.stimuli[i].target_loc] = exp.stimuli[i].target
+        cleanRow[exp.stimuli[i].contrast_loc] = exp.stimuli[i].contrast
+        cleanRow[exp.stimuli[i].filler1_loc] = exp.stimuli[i].filler1
+        cleanRow[exp.stimuli[i].filler2_loc] = exp.stimuli[i].filler2
+        cleanRow.type = exp.stimuli[i].trial_type
+        exp.cleanStim.push(cleanRow)
     }
-    console.log(cleanStim)
+    console.log(exp.cleanStim)
 };
 
 // these functions control trial timing
