@@ -37,7 +37,7 @@ function make_slides(f) {
       document.getElementById("ex_text_response").disabled = true;
       // start timer function controls the timing of the trial routine
       ex_startTimer()
-      exp.time1 = Date.now()
+      exp.ex_time = Date.now()
       $('#ex_topleft').prepend('<img src="_shared/images/apron.jpg" id="ex_topleft"/>')
       $('#ex_topright').prepend('<img src="_shared/images/apple_green.jpg" id="ex_topright"/>')
       $('#ex_bottomleft').prepend('<img src="_shared/images/ashtray.jpg" id="ex_bottomleft"/>')
@@ -50,7 +50,7 @@ function make_slides(f) {
         $(".err").show();
       } else {
         var clicktime = Date.now();
-        time = clicktime - exp.time1;
+        time = clicktime - exp.ex_time;
         exp.data_trials.push({
           "trial_type" : "single_trial",
           "response" : response,
@@ -74,13 +74,14 @@ function make_slides(f) {
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
         $(".err").hide();
+        document.getElementById("ex_text_response").disabled = true;
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
-        console.log(stim);
+        console.log(stim.highlight)
+        startTimer(stim.highlight);
         
 
         // routine to replace images in the grid for each trial 
-        console.log(stim.tl)
         $('#topleft').empty();
         $('#topleft').prepend('<img src="_shared/stimuli/' + stim.tl + '" id="topleft"/>')
         $('#topright').empty();
@@ -163,7 +164,8 @@ function getStimuli() {
 function cleanStimuli() {
     var i;
     for (i = 0; i < stimuli.length; i++) { 
-        var cleanRow = {type: ""}
+        var cleanRow = {type: "", highlight: ""}
+        cleanRow.highlight = simuli[i].target_loc
         cleanRow[stimuli[i].target_loc] = stimuli[i].target
         cleanRow[stimuli[i].contrast_loc] = stimuli[i].contrast
         cleanRow[stimuli[i].filler1_loc] = stimuli[i].filler1
@@ -183,12 +185,21 @@ function ex_ring() {
   $('#ex_highlight').prepend('<img src="_shared/images/highlight.png" id="ex_highlight"/>')
   document.getElementById("ex_text_response").disabled = false;
 }
-function startTimer() {
-  setTimeout(ring2, 1500) 
+function startTimer(highlight_location) {
+  setTimeout(ring(highlight_location), 1500) 
 }
 
-function ring() {
-  $('#highlight').prepend('<img src="_shared/images/highlight.png" id="highlight"/>')
+function ring(highlight_location) {
+  if (highlight_location = 'br') {
+    $('#br_highlight').prepend('<img src="_shared/images/highlight.png" id="br_highlight"/>')
+  } else if (highlight_location = 'tr') {
+    $('#tr_highlight').prepend('<img src="_shared/images/highlight.png" id="tr_highlight"/>')
+  } else if (highlight_location = 'bl') {
+    $('#bl_highlight').prepend('<img src="_shared/images/highlight.png" id="bl_highlight"/>')
+  } else if (highlight_location = 'tl'){
+    $('#tl_highlight').prepend('<img src="_shared/images/highlight.png" id="tl_highlight"/>')
+  }
+  document.getElementById("text_response").disabled = false;
 }
 
 

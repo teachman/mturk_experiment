@@ -145,17 +145,42 @@ textarea {
     margin: 10px;
 }
 
-#highlight{
+#ex_highlight{
 	width: 142px;
 	top: 5px;
 	left: 5px;
 	position: absolute;
 }
 
-#ex_highlight{
+#tl_highlight{ 
+	/* There are four possible highlight locations defined */
 	width: 142px;
 	top: 5px;
 	left: 5px;
+	position: absolute;
+}
+
+#tr_highlight{ 
+	/* There are four possible highlight locations defined */
+	width: 142px;
+	top: 5px;
+	right: 5px;
+	position: absolute;
+}
+
+#bl_highlight{ 
+	/* There are four possible highlight locations defined */
+	width: 142px;
+	bottom: 5px;
+	left: 5px;
+	position: absolute;
+}
+
+#br_highlight{ 
+	/* There are four possible highlight locations defined */
+	width: 142px;
+	bottom: 5px;
+	right: 5px;
 	position: absolute;
 }
 
