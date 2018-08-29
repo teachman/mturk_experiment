@@ -148,7 +148,7 @@ textarea {
 #ex_highlight{
 	width: 142px;
 	bottom: 5px;
-	right: -4px;
+	right: -5px;
 	position: absolute;
 }
 
@@ -164,7 +164,7 @@ textarea {
 	/* There are four possible highlight locations defined */
 	width: 142px;
 	top: 5px;
-	right: -4px;
+	right: -5px;
 	position: absolute;
 }
 
@@ -180,7 +180,7 @@ textarea {
 	/* There are four possible highlight locations defined */
 	width: 142px;
 	bottom: 5px;
-	right: -4spx;
+	right: -5px;
 	position: absolute;
 }
 
