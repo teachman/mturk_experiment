@@ -47,7 +47,7 @@ function make_slides(f) {
 
     button : function() {
       response = $("#ex_text_response").val();
-      if (response == 'Click on the') {
+      if (response == 'Click on the ') {
         $(".err").show();
       } else {
         var clicktime = Date.now();
@@ -75,9 +75,9 @@ function make_slides(f) {
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
         $(".err").hide();
-        
+
         // reset and disable the text box each trial 
-        $("#text_response").val("Click on the")
+        $("#text_response").val("Click on the ")
         document.getElementById("text_response").disabled = true;
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
@@ -203,7 +203,7 @@ function startTimer(highlight_location) {
   $('#tl_highlight').empty();
   $('#br_highlight').empty();
   $('#bl_highlight').empty();
-  setTimeout(ring(highlight_location), 1500) 
+  setTimeout(ring, 1500, highlight_location) 
 }
 
 function ring(highlight_location) {
