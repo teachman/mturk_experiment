@@ -83,8 +83,17 @@ function make_slides(f) {
         $('#bl_highlight').empty();
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
-        startTimer(stim.highlight);
+        //startTimer(stim.highlight);
         console.log(stim.highlight)
+        if (highlight_location = 'br') {
+          $('#br_highlight').prepend('<img src="_shared/images/highlight.png" id="br_highlight"/>')
+        } else if (highlight_location = 'tr') {
+          $('#tr_highlight').prepend('<img src="_shared/images/highlight.png" id="tr_highlight"/>')
+        } else if (highlight_location = 'bl') {
+          $('#bl_highlight').prepend('<img src="_shared/images/highlight.png" id="bl_highlight"/>')
+        } else if (highlight_location = 'tl'){
+          $('#tl_highlight').prepend('<img src="_shared/images/highlight.png" id="tl_highlight"/>')
+        } 
 
 
         // routine to replace images in the grid for each trial 
@@ -191,6 +200,7 @@ function ex_ring() {
   $('#ex_highlight').prepend('<img src="_shared/images/highlight.png" id="ex_highlight"/>')
   document.getElementById("ex_text_response").disabled = false;
 }
+
 function startTimer(highlight_location) {
   setTimeout(ring(highlight_location), 1500) 
 }
@@ -204,7 +214,7 @@ function ring(highlight_location) {
     $('#bl_highlight').prepend('<img src="_shared/images/highlight.png" id="bl_highlight"/>')
   } else if (highlight_location = 'tl'){
     $('#tl_highlight').prepend('<img src="_shared/images/highlight.png" id="tl_highlight"/>')
-  }
+  } else {}
   document.getElementById("text_response").disabled = false;
 }
 
