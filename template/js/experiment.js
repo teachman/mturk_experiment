@@ -84,14 +84,15 @@ function make_slides(f) {
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
         //startTimer(stim.highlight);
+
         console.log(stim.highlight)
-        if (stim.highlight = 'br') {
+        if (stim.highlight == 'br') {
           $('#br_highlight').prepend('<img src="_shared/images/highlight.png" id="br_highlight"/>')
-        } else if (stim.highlight = 'tr') {
+        } else if (stim.highlight == 'tr') {
           $('#tr_highlight').prepend('<img src="_shared/images/highlight.png" id="tr_highlight"/>')
-        } else if (stim.highlight = 'bl') {
+        } else if (stim.highlight == 'bl') {
           $('#bl_highlight').prepend('<img src="_shared/images/highlight.png" id="bl_highlight"/>')
-        } else if (stim.highlight = 'tl'){
+        } else if (stim.highlight == 'tl'){
           $('#tl_highlight').prepend('<img src="_shared/images/highlight.png" id="tl_highlight"/>')
         } 
 
