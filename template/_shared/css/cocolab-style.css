@@ -164,7 +164,7 @@ textarea {
 	/* There are four possible highlight locations defined */
 	width: 142px;
 	top: 5px;
-	right: 5px;
+	right: 0px;
 	position: absolute;
 }
 
@@ -180,7 +180,7 @@ textarea {
 	/* There are four possible highlight locations defined */
 	width: 142px;
 	bottom: 5px;
-	right: 5px;
+	right: 0px;
 	position: absolute;
 }
 
