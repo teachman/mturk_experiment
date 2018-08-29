@@ -157,18 +157,19 @@ function make_slides(f) {
 function getStimuli() {
     $.getJSON("/condition", { 'list': exp.condition}, function (data) {
       stimuli = JSON.parse(data)
-      console.log(stimuli);
       cleanStimuli();
     })
 };
 
 function cleanStimuli() {
-    console.log(stimuli)
     var i;
     var cleanStim = []
     for (i = 0; i < stimuli.length; i++) { 
         var cleanRow = {type: ""}
         cleanRow[stimuli[i].target_loc] = stimuli[i].target
+        cleanRow[stimuli[i].contrast_loc] = stimuli[i].contrast
+        cleanRow[stimuli[i].filler1_loc] = stimuli[i].filler1
+        cleanRow[stimuli[i].filler2_loc] = stimuli[i].filler2
         cleanRow.type = stimuli[i].trial_type
         cleanStim.push(cleanRow)
     }
