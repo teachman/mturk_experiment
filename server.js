@@ -49,7 +49,7 @@ app.get('/home', function(req,res){
 });
 
 app.get("/condition", function(req,res){
-    connection.query('SELECT target, target_loc, contrast, contrast_loc, filler1, filler1_loc, filler2, filler2_loc FROM lists WHERE list = ?', [req.query.list], function (error, result, fields) {    if (error) {
+    connection.query('SELECT target, target_loc, contrast, contrast_loc, filler1, filler1_loc, filler2, filler2_loc, trial_type FROM lists WHERE list = ?', [req.query.list], function (error, result, fields) {    if (error) {
          throw error;
        }
        res.json(JSON.stringify(result));
