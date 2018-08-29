@@ -165,7 +165,7 @@ function cleanStimuli() {
     var i;
     for (i = 0; i < stimuli.length; i++) { 
         var cleanRow = {type: "", highlight: ""}
-        cleanRow.highlight = simuli[i].target_loc
+        cleanRow.highlight = stimuli[i].target_loc
         cleanRow[stimuli[i].target_loc] = stimuli[i].target
         cleanRow[stimuli[i].contrast_loc] = stimuli[i].contrast
         cleanRow[stimuli[i].filler1_loc] = stimuli[i].filler1
