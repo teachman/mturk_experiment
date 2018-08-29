@@ -168,8 +168,8 @@ function cleanStimuli() {
     var cleanStim = []
     for (i = 0; i < stimuli.length; i++) { 
         var cleanRow = {br: "", bl: "", tr: "", tl: "", type: ""}
-        //cleanRow.stimuli[i].target_loc = stimuli[i].target
-        //cleanRow.type = stimuli[i].trial_type
+        cleanRow.stimuli[i].target_loc = stimuli[i].target
+        cleanRow.type = stimuli[i].trial_type
         console.log(cleanRow)
         cleanStim.push(cleanRow)
     }
