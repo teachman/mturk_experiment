@@ -74,7 +74,7 @@ function make_slides(f) {
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
         $(".err").hide();
-        document.getElementById("ex_text_response").disabled = true;
+        document.getElementById("text_response").disabled = true;
         
         // empty highlight from previous trial 
         $('#tr_highlight').empty();
