@@ -80,6 +80,7 @@ function make_slides(f) {
         
 
         // routine to replace images in the grid for each trial 
+        console.log(stim.tl)
         $('#topleft').empty();
         $('#topleft').prepend('<img src="_shared/stimuli/"' + stim.tl + ' id="topleft"/>')
         $('#topright').empty();
