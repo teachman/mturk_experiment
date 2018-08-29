@@ -164,7 +164,6 @@ function getStimuli() {
 
 function cleanStimuli() {
     var i;
-    cleanStim = []
     for (i = 0; i < stimuli.length; i++) { 
         var cleanRow = {condition: "", type: "", highlight: ""}
         cleanRow.condition = stimuli[i].list
