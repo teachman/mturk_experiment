@@ -169,6 +169,7 @@ function cleanStimuli() {
         cleanRow.type = stimuli[i].trial_type
         cleanStim.push(cleanRow)
     }
+    console.log(cleanStim)
     return(cleanStim)
 };
 
