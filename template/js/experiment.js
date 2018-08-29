@@ -1,3 +1,6 @@
+var stimuli = []
+var cleanStim = []
+
 function make_slides(f) {
   var   slides = {};
   
@@ -66,8 +69,8 @@ function make_slides(f) {
       (the variable 'stim' will change between each of these values,
       and for each of these, present_handle will be run.) */
       
-      // cleanStim is the full arra
-      present : exp.cleanStim,
+      // cleanStim is the full array of stimuli 
+      present : cleanStim,
   
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
@@ -75,10 +78,9 @@ function make_slides(f) {
         document.getElementById("text_response").disabled = true;
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
-        //startTimer(stim.highlight);
 
         startTimer(stim.highlight)
-        console.log(stim.highlight)
+        console.log(stim.highlight, stim.condition)
 
         // routine to replace images in the grid for each trial 
         $('#topleft').empty();
@@ -155,26 +157,27 @@ function make_slides(f) {
 // grabs list from database
 function getStimuli() {
     $.getJSON("/condition", { 'list': exp.condition}, function (data) {
-      exp.stimuli = JSON.parse(data)
-      console.log(exp.stimuli)
+      stimuli = JSON.parse(data)
       cleanStimuli();
     })
 };
 
 function cleanStimuli() {
     var i;
-    exp.cleanStim = []
-    for (i = 0; i < exp.stimuli.length; i++) { 
-        var cleanRow = {type: "", highlight: ""}
-        cleanRow.highlight = exp.stimuli[i].target_loc
-        cleanRow[exp.stimuli[i].target_loc] = exp.stimuli[i].target
-        cleanRow[exp.stimuli[i].contrast_loc] = exp.stimuli[i].contrast
-        cleanRow[exp.stimuli[i].filler1_loc] = exp.stimuli[i].filler1
-        cleanRow[exp.stimuli[i].filler2_loc] = exp.stimuli[i].filler2
+    cleanStim = []
+    for (i = 0; i < stimuli.length; i++) { 
+        var cleanRow = {condition: "", type: "", highlight: ""}
+        cleanRow.condition = stimuli[i].list
         cleanRow.type = exp.stimuli[i].trial_type
-        exp.cleanStim.push(cleanRow)
+        cleanRow.highlight = exp.stimuli[i].target_loc
+        cleanRow[stimuli[i].target_loc] = stimuli[i].target
+        cleanRow[stimuli[i].contrast_loc] = stimuli[i].contrast
+        cleanRow[stimuli[i].filler1_loc] = stimuli[i].filler1
+        cleanRow[stimuli[i].filler2_loc] = stimuli[i].filler2
+        // push all data for the trial to the clean stimulus array 
+        cleanStim.push(cleanRow)
     }
-    console.log(exp.cleanStim)
+    console.log(cleanStim)
 };
 
 // these functions control trial timing
