@@ -17,7 +17,7 @@ function make_slides(f) {
       $(".err").hide();
       $(".display_condition").html("You are in " + exp.condition + ".");
       $(".display_system").html("You are using " + exp.system.Browser + " on " + exp.system.OS + " and your resolution is " + exp.system.screenW + "x" + exp.system.screenH); 
-      cleanStimuli();
+      getStimuli();
     },
 
     button : function() {
