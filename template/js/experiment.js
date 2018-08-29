@@ -6,8 +6,6 @@ function make_slides(f) {
      start: function() {
       exp.startT = Date.now();
       // Grab the stimuli for the experiment 
-      exp.stimuli = []
-      exp.cleanStim = []
       getStimuli();
      }
   });
@@ -164,6 +162,7 @@ function getStimuli() {
 
 function cleanStimuli() {
     var i;
+    exp.cleanStim = []
     for (i = 0; i < exp.stimuli.length; i++) { 
         var cleanRow = {type: "", highlight: ""}
         cleanRow.highlight = exp.stimuli[i].target_loc
