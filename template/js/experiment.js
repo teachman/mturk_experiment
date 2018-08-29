@@ -75,7 +75,7 @@ function make_slides(f) {
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
         $(".err").hide();
-        document.getElementById("#text_response").empty()
+        //document.getElementById("#text_response").empty()
         document.getElementById("#text_response").disabled = true;
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
