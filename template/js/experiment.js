@@ -1,4 +1,5 @@
 var stimuli = []
+var cleanStim = []
 
 function make_slides(f) {
   var   slides = {};
@@ -67,7 +68,7 @@ function make_slides(f) {
       and for each of these, present_handle will be run.) */
       
       
-      present : getStimuli(),
+      present : cleanStim,
   
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
@@ -159,7 +160,6 @@ function getStimuli() {
 
 function cleanStimuli() {
     var i;
-    var cleanStim = []
     for (i = 0; i < stimuli.length; i++) { 
         var cleanRow = {type: ""}
         cleanRow[stimuli[i].target_loc] = stimuli[i].target
@@ -170,7 +170,6 @@ function cleanStimuli() {
         cleanStim.push(cleanRow)
     }
     console.log(cleanStim)
-    return(cleanStim)
 };
 
 // these functions control trial timing
