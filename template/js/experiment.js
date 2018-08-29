@@ -75,27 +75,12 @@ function make_slides(f) {
       present_handle : function(stim) {
         $(".err").hide();
         document.getElementById("text_response").disabled = true;
-        
-        // empty highlight from previous trial 
-        $('#tr_highlight').empty();
-        $('#tl_highlight').empty();
-        $('#br_highlight').empty();
-        $('#bl_highlight').empty();
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
         //startTimer(stim.highlight);
 
+        startTimer(stim.highlight)
         console.log(stim.highlight)
-        if (stim.highlight == 'br') {
-          $('#br_highlight').prepend('<img src="_shared/images/highlight.png" id="br_highlight"/>')
-        } else if (stim.highlight == 'tr') {
-          $('#tr_highlight').prepend('<img src="_shared/images/highlight.png" id="tr_highlight"/>')
-        } else if (stim.highlight == 'bl') {
-          $('#bl_highlight').prepend('<img src="_shared/images/highlight.png" id="bl_highlight"/>')
-        } else if (stim.highlight == 'tl'){
-          $('#tl_highlight').prepend('<img src="_shared/images/highlight.png" id="tl_highlight"/>')
-        } 
-
 
         // routine to replace images in the grid for each trial 
         $('#topleft').empty();
@@ -203,17 +188,22 @@ function ex_ring() {
 }
 
 function startTimer(highlight_location) {
+  // empty highlight from previous trial 
+  $('#tr_highlight').empty();
+  $('#tl_highlight').empty();
+  $('#br_highlight').empty();
+  $('#bl_highlight').empty();
   setTimeout(ring(highlight_location), 1500) 
 }
 
 function ring(highlight_location) {
-  if (highlight_location = 'br') {
+  if (highlight_location == 'br') {
     $('#br_highlight').prepend('<img src="_shared/images/highlight.png" id="br_highlight"/>')
-  } else if (highlight_location = 'tr') {
+  } else if (highlight_location == 'tr') {
     $('#tr_highlight').prepend('<img src="_shared/images/highlight.png" id="tr_highlight"/>')
-  } else if (highlight_location = 'bl') {
+  } else if (highlight_location == 'bl') {
     $('#bl_highlight').prepend('<img src="_shared/images/highlight.png" id="bl_highlight"/>')
-  } else if (highlight_location = 'tl'){
+  } else if (highlight_location == 'tl'){
     $('#tl_highlight').prepend('<img src="_shared/images/highlight.png" id="tl_highlight"/>')
   } else {}
   document.getElementById("text_response").disabled = false;
