@@ -16,7 +16,7 @@ function make_slides(f) {
       $(".display_condition").html("You are in " + exp.condition + ".");
       $(".display_system").html("You are using " + exp.system.Browser + " on " + exp.system.OS + " and your resolution is " + exp.system.screenW + "x" + exp.system.screenH); 
       var test = getStimuli()
-      console.log(test)
+      cleanStimuli(test);
     },
 
     button : function() {
@@ -160,6 +160,21 @@ function getStimuli() {
       console.log(stimuli);
       resolve(stimuli) 
     })
+  });
+};
+
+function cleanStimuli(stimuli) {
+  return new Promise((resolve,reject)=>{ 
+    var i;
+    var cleanStim = []
+    for (i = 0; i < stimuli.length; i++) { 
+        var cleanRow = {br: "", bl: "", tr: "", tl: "", type: ""}
+        cleanRow.stimuli[i].target_loc = stimuli[i].target
+        cleanRow.type = stimuli[i].trial_type
+        cleanStim[i] = cleanRow
+    }
+    console.log(cleanStim)
+    resolve(cleanStim) 
   });
 };
 
