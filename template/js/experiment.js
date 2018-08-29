@@ -168,8 +168,8 @@ function cleanStimuli() {
     for (i = 0; i < stimuli.length; i++) { 
         var cleanRow = {condition: "", type: "", highlight: ""}
         cleanRow.condition = stimuli[i].list
-        cleanRow.type = exp.stimuli[i].trial_type
-        cleanRow.highlight = exp.stimuli[i].target_loc
+        cleanRow.type = stimuli[i].trial_type
+        cleanRow.highlight = stimuli[i].target_loc
         cleanRow[stimuli[i].target_loc] = stimuli[i].target
         cleanRow[stimuli[i].contrast_loc] = stimuli[i].contrast
         cleanRow[stimuli[i].filler1_loc] = stimuli[i].filler1
