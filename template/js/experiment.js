@@ -156,6 +156,7 @@ function make_slides(f) {
 function getStimuli() {
     $.getJSON("/condition", { 'list': exp.condition}, function (data) {
       exp.stimuli = JSON.parse(data)
+      console.log(exp.stimuli)
       cleanStimuli();
     })
 };

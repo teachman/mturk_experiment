@@ -52,6 +52,7 @@ app.get("/condition", function(req,res){
     connection.query('SELECT target, target_loc, contrast, contrast_loc, filler1, filler1_loc, filler2, filler2_loc, trial_type FROM lists WHERE list = ?', [req.query.list], function (error, result, fields) {    if (error) {
          throw error;
        }
+       console.log(result)
        res.json(JSON.stringify(result));
      })
    })
