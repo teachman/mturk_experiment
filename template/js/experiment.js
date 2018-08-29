@@ -75,11 +75,14 @@ function make_slides(f) {
       //this gets run only at the beginning of the block
       present_handle : function(stim) {
         $(".err").hide();
-        document.getElementById("text_response").disabled = true;
+        document.getElementById("#text_response").empty()
+        document.getElementById("#text_response").disabled = true;
   
         this.stim = stim; //I like to store this information in the slide so I can record it later.
 
         startTimer(stim.highlight)
+        exp.time = Date.now()
+
         console.log(stim.highlight, stim.condition)
 
         // routine to replace images in the grid for each trial 
@@ -96,7 +99,7 @@ function make_slides(f) {
       
       button : function() {
         response = $("#text_response").val();
-        if (response.length == 0) {
+        if (response == 'Click on the') {
           $(".err").show();
         } else {
           this.log_responses();
@@ -108,9 +111,12 @@ function make_slides(f) {
       },
   
       log_responses : function() {
+        var clicktime = Date.now();
+        time = clicktime - exp.time;
         exp.data_trials.push({
           "trial_type" : "multi_trial",
-          "response" : response
+          "response" : response, 
+          "time" : time,
         });
       }
   });
