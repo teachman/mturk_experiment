@@ -159,7 +159,7 @@ function getStimuli() {
       stimuli = JSON.parse(data)
       console.log(stimuli);
     })
-    cleanStimuli();
+    .done(cleanStimuli());
 };
 
 function cleanStimuli() {
