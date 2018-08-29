@@ -8,6 +8,7 @@ function make_slides(f) {
      name : "i0",
      start: function() {
       exp.startT = Date.now();
+      getStimuli();
      }
   });
 
