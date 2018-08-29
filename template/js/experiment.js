@@ -186,6 +186,10 @@ function ex_ring() {
   document.getElementById("ex_text_response").disabled = false;
 }
 function startTimer(highlight_location) {
+  $('#tr_highlight').empty();
+  $('#tl_highlight').empty();
+  $('#br_highlight').empty();
+  $('#bl_highlight').empty();
   setTimeout(ring(highlight_location), 1500) 
 }
 
