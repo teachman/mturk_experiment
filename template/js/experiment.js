@@ -1,3 +1,5 @@
+var stimuli = []
+
 function make_slides(f) {
   var   slides = {};
 
@@ -15,8 +17,7 @@ function make_slides(f) {
       $(".err").hide();
       $(".display_condition").html("You are in " + exp.condition + ".");
       $(".display_system").html("You are using " + exp.system.Browser + " on " + exp.system.OS + " and your resolution is " + exp.system.screenW + "x" + exp.system.screenH); 
-      var test = getStimuli()
-      cleanStimuli(test);
+      cleanStimuli(stimuli);
     },
 
     button : function() {
@@ -154,17 +155,14 @@ function make_slides(f) {
 
 // grabs list from database
 function getStimuli() {
-  return new Promise((resolve,reject)=>{ 
     $.getJSON("/condition", { 'list': exp.condition}, function (data) {
-      var stimuli = JSON.parse(data)
+      stimuli = JSON.parse(data)
       console.log(stimuli);
-      resolve(stimuli) 
     })
-  });
 };
 
-function cleanStimuli(stimuli) {
-  return new Promise((resolve,reject)=>{ 
+function cleanStimuli() {
+    getStimuli()
     console.log(stimuli)
     var i;
     var cleanStim = []
@@ -176,8 +174,6 @@ function cleanStimuli(stimuli) {
         cleanStim.push(cleanRow)
     }
     console.log(cleanStim)
-    resolve(cleanStim) 
-  });
 };
 
 // these functions control trial timing
